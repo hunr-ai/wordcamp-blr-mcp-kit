@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Connecting WordPress and MCP · WordCamp Bengaluru 2026</title>
+<meta name="description" content="Let AI work with your WordPress site, safely. Paste one prompt into your coding agent and it sets up a local WordPress your AI app can talk to.">
+<link rel="canonical" href="https://hunr.ai/wordcamp">
+<meta name="theme-color" content="#F7F7F5">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="hunr.ai">
+<meta property="og:title" content="Connecting WordPress and MCP · WordCamp Bengaluru 2026">
+<meta property="og:description" content="Let AI work with your WordPress site, safely. Paste one prompt into your coding agent and it sets up a local WordPress your AI app can talk to.">
+<meta property="og:url" content="https://hunr.ai/wordcamp">
+<meta property="og:image" content="https://hunr-ai.github.io/wordcamp-blr-mcp-kit/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Let AI work with your WordPress site, safely. WordCamp Bengaluru 2026.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Connecting WordPress and MCP · WordCamp Bengaluru 2026">
+<meta name="twitter:description" content="Let AI work with your WordPress site, safely. Paste one prompt into your coding agent and it sets up a local WordPress your AI app can talk to.">
+<meta name="twitter:image" content="https://hunr-ai.github.io/wordcamp-blr-mcp-kit/og.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&family=Playfair+Display:ital,wght@1,500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #F7F7F5;
+    --raised: #FFFFFF;
+    --ink: #161618;
+    --muted: #6B6B70;
+    --rule: #E3E3DF;
+    --green: #00723B;
+    --green-hover: #005A25;
+    --mint: #E4F5E9;
+    --straw: #F9EFDE;
+    --inverse: #16231D;
+    --radius: 16px;
+    --gutter: 20px;
+    --sans: "Figtree", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --serif: "Playfair Display", Georgia, serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 17px/1.55 var(--sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--green); text-underline-offset: 3px; }
+  a:hover { color: var(--green-hover); }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 var(--gutter); }
+
+  .label {
+    font: 500 12px/1.3 var(--mono);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+  h1, h2, h3 { font-weight: 700; letter-spacing: -.02em; margin: 0; }
+  h1 { font-size: clamp(36px, 9vw, 60px); line-height: 1.05; max-width: 14ch; }
+  h1 em { font: italic 500 1.04em/1 var(--serif); color: var(--green); letter-spacing: -.01em; }
+  h2 { font-size: clamp(24px, 5.5vw, 32px); line-height: 1.15; }
+  h3 { font-size: 17px; letter-spacing: -.01em; }
+  p { margin: 0; }
+  .muted { color: var(--muted); }
+
+  header.top { padding: 22px 0 0; }
+  .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand a { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; font-weight: 700; letter-spacing: -.01em; }
+  .brand a:hover { color: var(--green); }
+  .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
+  .brand .event { font: 500 11px/1.3 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-align: right; }
+
+  section { padding: 44px 0; border-top: 1px solid var(--rule); }
+  .hero { border-top: 0; padding: 48px 0 40px; }
+  .hero .lede { font-size: 19px; color: var(--muted); margin-top: 18px; max-width: 34ch; }
+
+  .card {
+    background: var(--raised);
+    border: 1px solid var(--rule);
+    border-radius: var(--radius);
+    padding: 24px 20px;
+  }
+  .card h2 { margin-bottom: 18px; }
+  .prompt-box {
+    background: var(--mint);
+    border-radius: 12px;
+    padding: 16px 18px;
+    font-size: 17px;
+    line-height: 1.5;
+    font-weight: 500;
+    overflow-wrap: anywhere;
+    -webkit-user-select: all;
+    user-select: all;
+  }
+  .btn {
+    appearance: none;
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    min-height: 52px;
+    padding: 0 26px;
+    border-radius: 999px;
+    border: 1px solid var(--green);
+    background: var(--green);
+    color: #fff;
+    font: 600 17px/1 var(--sans);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color .15s, border-color .15s;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .btn:hover { background: var(--green-hover); border-color: var(--green-hover); color: #fff; }
+  .btn:focus-visible, .tab:focus-visible, .copy-sm:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; }
+  .btn.ghost { background: transparent; color: var(--green); }
+  .btn.ghost:hover { background: var(--mint); color: var(--green-hover); }
+  .btn-row { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .btn.block { width: 100%; }
+  .works { margin-top: 18px; font-size: 15px; color: var(--muted); }
+  .aside { margin-top: 6px; font-size: 15px; }
+
+  .section-head { margin-bottom: 22px; }
+  .section-head p { margin-top: 10px; color: var(--muted); max-width: 52ch; }
+
+  .tabs { display: inline-flex; gap: 4px; padding: 4px; border: 1px solid var(--rule); border-radius: 999px; background: var(--raised); margin-bottom: 22px; }
+  .tab {
+    appearance: none; border: 0; background: transparent; color: var(--muted);
+    font: 600 15px/1 var(--sans); padding: 11px 20px; border-radius: 999px; cursor: pointer;
+  }
+  .tab[aria-selected="true"] { background: var(--ink); color: #fff; }
+  .js .panel[hidden] { display: none; }
+  .no-js .tabs { display: none; }
+  .no-js .panel + .panel { margin-top: 32px; }
+  .panel h3.os { margin-bottom: 14px; }
+  .js .panel h3.os { display: none; }
+
+  ol.steps { list-style: none; counter-reset: s; margin: 0; padding: 0; }
+  ol.steps li { counter-increment: s; position: relative; padding: 0 0 18px 46px; }
+  ol.steps li::before {
+    content: counter(s);
+    position: absolute; left: 0; top: -2px;
+    width: 30px; height: 30px; border-radius: 50%;
+    display: grid; place-items: center;
+    border: 1px solid var(--rule); background: var(--raised);
+    font: 500 13px/1 var(--mono); color: var(--green);
+  }
+  .file { font: 500 .92em/1 var(--mono); background: var(--straw); padding: 2px 6px; border-radius: 6px; white-space: nowrap; }
+
+  ul.prompts { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--rule); }
+  ul.prompts li { display: flex; gap: 14px; align-items: flex-start; justify-content: space-between; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+  ul.prompts .ptext { font-weight: 500; overflow-wrap: anywhere; }
+  ul.prompts .pnote { display: block; margin-top: 4px; font-size: 14px; color: var(--muted); font-weight: 400; }
+  .copy-sm {
+    appearance: none; flex: none;
+    border: 1px solid var(--rule); background: var(--raised); color: var(--green);
+    font: 600 14px/1 var(--sans); border-radius: 999px; padding: 10px 14px; min-width: 76px; cursor: pointer;
+  }
+  .copy-sm:hover { border-color: var(--green); }
+  .no-js .copy-sm, .no-js #copy-main { display: none; }
+
+  .cols { display: grid; gap: 22px; }
+  .cols .num { font: 500 12px/1 var(--mono); color: var(--green); letter-spacing: .1em; margin-bottom: 8px; display: block; }
+  .cols p { color: var(--muted); font-size: 15px; margin-top: 6px; }
+
+  ul.safety { list-style: none; margin: 0; padding: 0; }
+  ul.safety li { position: relative; padding: 0 0 14px 28px; }
+  ul.safety li::before { content: ""; position: absolute; left: 2px; top: .55em; width: 12px; height: 7px; border-left: 2px solid var(--green); border-bottom: 2px solid var(--green); transform: rotate(-45deg); }
+
+  footer { background: var(--inverse); color: #E9EEEA; margin-top: 12px; padding: 44px 0 52px; }
+  footer .label { color: #9DB3A6; }
+  footer h2 { color: #fff; }
+  footer a { color: #fff; }
+  footer a:hover { color: var(--mint); }
+  footer p { margin-top: 10px; color: #C5D2CA; }
+  footer .links { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
+  footer .btn { min-height: 46px; font-size: 16px; padding: 0 22px; }
+  footer .btn.light { background: #fff; border-color: #fff; color: var(--inverse); }
+  footer .btn.light:hover { background: var(--mint); border-color: var(--mint); color: var(--inverse); }
+  footer .btn.ghost { border-color: #4C6357; color: #fff; }
+  footer .btn.ghost:hover { background: transparent; border-color: #fff; color: #fff; }
+  footer .fine { margin-top: 28px; font-size: 13px; color: #8EA397; }
+  footer .fine a { color: #C5D2CA; }
+
+  @media (min-width: 640px) {
+    :root { --gutter: 32px; }
+    .card { padding: 34px 34px 30px; }
+    .btn.block { width: auto; }
+    .cols { grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .hero { padding: 72px 0 56px; }
+    section { padding: 60px 0; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body class="no-js">
+<script>document.body.className = "js";</script>
+
+<header class="top">
+  <div class="wrap brand">
+    <a href="https://hunr.ai" aria-label="hunr.ai home"><span class="dot" aria-hidden="true"></span>hunr.ai</a>
+    <span class="event">WordCamp Bengaluru<br>22 Nov 2026</span>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <section class="hero">
+      <p class="label">WordCamp Bengaluru 2026 · Hands-on kit</p>
+      <h1>Let AI work with your WordPress site, <em>safely</em>.</h1>
+      <p class="lede">One prompt sets up a real WordPress site on your laptop, with the official MCP Adapter, and connects it to your AI app.</p>
+    </section>
+
+    <div class="card" id="agent">
+      <p class="label">Step 1 · The easy way</p>
+      <h2>Paste this into your coding agent</h2>
+      <div class="prompt-box" id="main-prompt">Set up the WordCamp Bengaluru WordPress + MCP demo for me by following https://github.com/hunr-ai/wordcamp-blr-mcp-kit/blob/main/AGENT_SETUP.md</div>
+      <div class="btn-row">
+        <button class="btn block" id="copy-main" type="button" data-copy-target="main-prompt" data-label="Copy prompt">Copy prompt</button>
+      </div>
+      <p class="works">Works with Claude Code, Cursor, Codex, GitHub Copilot, Windsurf…</p>
+      <p class="aside">No terminal? No problem. Your agent knows where it is.</p>
+    </div>
+
+    <section id="no-agent" style="margin-top:44px">
+      <div class="section-head">
+        <p class="label">Step 2 · No coding agent?</p>
+        <h2>Double-click instead</h2>
+        <p>Same result, one launcher. You need Node.js 22 or newer; the launcher tells you how to get it if it's missing.</p>
+      </div>
+
+      <div class="tabs" role="tablist" aria-label="Operating system">
+        <button class="tab" role="tab" id="tab-windows" aria-controls="panel-windows" aria-selected="true" type="button">Windows</button>
+        <button class="tab" role="tab" id="tab-macos" aria-controls="panel-macos" aria-selected="false" type="button" tabindex="-1">macOS</button>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-windows" aria-labelledby="tab-windows">
+        <h3 class="os">Windows</h3>
+        <ol class="steps">
+          <li>Download the ZIP and open your Downloads folder.</li>
+          <li>Right-click the ZIP, choose “Extract All…”, then open the new folder.</li>
+          <li>Double-click <span class="file">Start-Windows.cmd</span>. If Windows says it protected your PC, click “More info”, then “Run anyway”.</li>
+          <li>Keep the window open. When it says your site is running, restart your AI app and try a prompt below.</li>
+        </ol>
+        <a class="btn ghost" href="https://github.com/hunr-ai/wordcamp-blr-mcp-kit/archive/refs/heads/main.zip">Download ZIP</a>
+      </div>
+
+      <div class="panel" role="tabpanel" id="panel-macos" aria-labelledby="tab-macos">
+        <h3 class="os">macOS</h3>
+        <ol class="steps">
+          <li>Download the ZIP and double-click it in Downloads to unzip (Safari may already have done this).</li>
+          <li>Open the <span class="file">wordcamp-blr-mcp-kit-main</span> folder.</li>
+          <li>Right-click <span class="file">Start-macOS.command</span> and choose Open, then Open again. No Open button? Go to System Settings → Privacy &amp; Security and click “Open Anyway”.</li>
+          <li>Keep the Terminal window open. When it says your site is running, restart your AI app and try a prompt below.</li>
+        </ol>
+        <a class="btn ghost" href="https://github.com/hunr-ai/wordcamp-blr-mcp-kit/archive/refs/heads/main.zip">Download ZIP</a>
+      </div>
+    </section>
+
+    <section id="prompts">
+      <div class="section-head">
+        <p class="label">Step 3</p>
+        <h2>Try these prompts</h2>
+        <p>Restart your AI app first so it picks up the new tools. Then just ask.</p>
+      </div>
+      <ul class="prompts">
+        <li><span class="ptext" id="p1">Are you connected to my WordPress site? What is it called and what version is it running?<span class="pnote">Say hello</span></span><button class="copy-sm" type="button" data-copy-target="p1" data-label="Copy">Copy</button></li>
+        <li><span class="ptext" id="p2">Run a content audit and give me the top 3 things to fix this week.<span class="pnote">Make it useful</span></span><button class="copy-sm" type="button" data-copy-target="p2" data-label="Copy">Copy</button></li>
+        <li><span class="ptext" id="p3">Run an SEO check on “WordPress 7.2 is almost here”, rewrite it to fix every issue, and save the result as a new draft.<span class="pnote">Make it useful</span></span><button class="copy-sm" type="button" data-copy-target="p3" data-label="Copy">Copy</button></li>
+        <li><span class="ptext" id="p4">Write a 400-word recap of WordCamp Bengaluru 2026 with two subheadings and an excerpt. Category: Community. Save it as a draft.<span class="pnote">Then open wp-admin → Posts → Drafts</span></span><button class="copy-sm" type="button" data-copy-target="p4" data-label="Copy">Copy</button></li>
+        <li><span class="ptext" id="p5">Delete all posts on my site.<span class="pnote">Try to break it. It can't, on purpose.</span></span><button class="copy-sm" type="button" data-copy-target="p5" data-label="Copy">Copy</button></li>
+      </ul>
+    </section>
+
+    <section id="explainer">
+      <p class="label">What you're running</p>
+      <div class="cols">
+        <div><span class="num">01</span><h3>WordPress Playground</h3><p>A real WordPress running on your laptop. No PHP, MySQL or Docker. It resets every time you stop it.</p></div>
+        <div><span class="num">02</span><h3>Official MCP Adapter</h3><p>The WordPress.org plugin that turns your site's abilities into tools AI apps understand.</p></div>
+        <div><span class="num">03</span><h3>Your AI app</h3><p>Claude, Cursor, VS Code and friends connect over MCP, the open standard for AI tools.</p></div>
+      </div>
+    </section>
+
+    <section id="safety">
+      <div class="section-head">
+        <p class="label">Safety</p>
+        <h2>Built to be safe to play with</h2>
+      </div>
+      <ul class="safety">
+        <li>Everything stays on your laptop at 127.0.0.1. Nothing goes on the internet, and the site starts fresh every time.</li>
+        <li>The AI only sees the abilities your site chooses to share. There's a “delete all posts” ability in there, and the AI can't even see it.</li>
+        <li>Agents draft, humans publish. The AI signs in with an Application Password you can revoke in one click.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="label">Stay in touch</p>
+    <h2>Built by the hunr.ai team for WordCamp Bengaluru 2026</h2>
+    <p>Amartya Gaur (hunr.ai), Nagesh Pai and Prince Kumar</p>
+    <p>“Connecting WordPress and MCP”, Sunday 22 November 2026</p>
+    <div class="links">
+      <a class="btn light" href="https://hunr.ai">hunr.ai</a>
+      <a class="btn ghost" href="https://github.com/hunr-ai/wordcamp-blr-mcp-kit">Source on GitHub</a>
+    </div>
+    <p class="fine"><a href="https://hunr.ai/wordcamp">hunr.ai/wordcamp</a> · <a href="https://hunr-ai.github.io/wordcamp-blr-mcp-kit/">Mirror of hunr.ai/wordcamp</a> · GPL-2.0-or-later</p>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Copy buttons: Clipboard API where allowed, textarea fallback for older mobile browsers.
+  function copyText(text) {
+    if (navigator.clipboard && window.isSecureContext) {
+      return navigator.clipboard.writeText(text);
+    }
+    return new Promise(function (resolve, reject) {
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed";
+      ta.style.top = "-1000px";
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      var ok = false;
+      try { ok = document.execCommand("copy"); } catch (e) {}
+      document.body.removeChild(ta);
+      ok ? resolve() : reject();
+    });
+  }
+  function textOf(el) {
+    // Copy the prompt only, not the little note under it.
+    var clone = el.cloneNode(true);
+    var notes = clone.querySelectorAll(".pnote");
+    for (var i = 0; i < notes.length; i++) notes[i].remove();
+    return clone.textContent.trim();
+  }
+  document.querySelectorAll("[data-copy-target]").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var target = document.getElementById(btn.getAttribute("data-copy-target"));
+      copyText(textOf(target)).then(function () {
+        btn.textContent = "Copied ✓";
+      }, function () {
+        btn.textContent = "Select & copy";
+      });
+      clearTimeout(btn._t);
+      btn._t = setTimeout(function () { btn.textContent = btn.getAttribute("data-label"); }, 2200);
+    });
+  });
+
+  // Tabs: preselect the visitor's OS, arrow keys move between tabs.
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(tab, focus) {
+    tabs.forEach(function (t) {
+      var on = t === tab;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+    });
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { select(t); });
+    t.addEventListener("keydown", function (e) {
+      if (e.key === "ArrowRight" || e.key === "ArrowLeft") {
+        select(tabs[(i + (e.key === "ArrowRight" ? 1 : tabs.length - 1)) % tabs.length], true);
+        e.preventDefault();
+      }
+    });
+  });
+  // Only real Macs get the macOS tab first (phones scanning the QR usually belong to Windows laptop owners too).
+  var isMac = /Mac/.test(navigator.platform || "") && !(navigator.maxTouchPoints > 1);
+  select(isMac ? tabs[1] : tabs[0]);
+})();
+</script>
+</body>
+</html>

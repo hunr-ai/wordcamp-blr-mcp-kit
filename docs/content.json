@@ -1,0 +1,93 @@
+{
+  "_note": "Single source of copy for the landing page. docs/index.html uses these exact strings; reuse them on https://hunr.ai/wordcamp. Plain text only (no HTML). The 'emphasis' part of the hero title is set in Playfair Display italic, in green.",
+  "meta": {
+    "title": "Connecting WordPress and MCP · WordCamp Bengaluru 2026",
+    "description": "Let AI work with your WordPress site, safely. Paste one prompt into your coding agent and it sets up a local WordPress your AI app can talk to.",
+    "urls": {
+      "primary": "https://hunr.ai/wordcamp",
+      "mirror": "https://hunr-ai.github.io/wordcamp-blr-mcp-kit/",
+      "repo": "https://github.com/hunr-ai/wordcamp-blr-mcp-kit",
+      "agentSetup": "https://github.com/hunr-ai/wordcamp-blr-mcp-kit/blob/main/AGENT_SETUP.md",
+      "zip": "https://github.com/hunr-ai/wordcamp-blr-mcp-kit/archive/refs/heads/main.zip",
+      "hunr": "https://hunr.ai"
+    }
+  },
+  "hero": {
+    "eyebrow": "WordCamp Bengaluru 2026 · Hands-on kit",
+    "titleBefore": "Let AI work with your WordPress site, ",
+    "titleEmphasis": "safely",
+    "titleAfter": ".",
+    "lede": "One prompt sets up a real WordPress site on your laptop, with the official MCP Adapter, and connects it to your AI app."
+  },
+  "step1": {
+    "label": "Step 1 · The easy way",
+    "title": "Paste this into your coding agent",
+    "prompt": "Set up the WordCamp Bengaluru WordPress + MCP demo for me by following https://github.com/hunr-ai/wordcamp-blr-mcp-kit/blob/main/AGENT_SETUP.md",
+    "copyButton": "Copy prompt",
+    "copiedButton": "Copied ✓",
+    "worksWith": "Works with Claude Code, Cursor, Codex, GitHub Copilot, Windsurf…",
+    "aside": "No terminal? No problem. Your agent knows where it is."
+  },
+  "step2": {
+    "label": "Step 2 · No coding agent?",
+    "title": "Double-click instead",
+    "lede": "Same result, one launcher. You need Node.js 22 or newer; the launcher tells you how to get it if it's missing.",
+    "downloadButton": "Download ZIP",
+    "windows": {
+      "tab": "Windows",
+      "steps": [
+        "Download the ZIP and open your Downloads folder.",
+        "Right-click the ZIP, choose “Extract All…”, then open the new folder.",
+        "Double-click Start-Windows.cmd. If Windows says it protected your PC, click “More info”, then “Run anyway”.",
+        "Keep the window open. When it says your site is running, restart your AI app and try a prompt below."
+      ]
+    },
+    "macos": {
+      "tab": "macOS",
+      "steps": [
+        "Download the ZIP and double-click it in Downloads to unzip (Safari may already have done this).",
+        "Open the wordcamp-blr-mcp-kit-main folder.",
+        "Right-click Start-macOS.command and choose Open, then Open again. No Open button? Go to System Settings → Privacy & Security and click “Open Anyway”.",
+        "Keep the Terminal window open. When it says your site is running, restart your AI app and try a prompt below."
+      ]
+    }
+  },
+  "prompts": {
+    "label": "Step 3",
+    "title": "Try these prompts",
+    "lede": "Restart your AI app first so it picks up the new tools. Then just ask.",
+    "items": [
+      { "text": "Are you connected to my WordPress site? What is it called and what version is it running?", "note": "Say hello" },
+      { "text": "Run a content audit and give me the top 3 things to fix this week.", "note": "Make it useful" },
+      { "text": "Run an SEO check on “WordPress 7.2 is almost here”, rewrite it to fix every issue, and save the result as a new draft.", "note": "Make it useful" },
+      { "text": "Write a 400-word recap of WordCamp Bengaluru 2026 with two subheadings and an excerpt. Category: Community. Save it as a draft.", "note": "Then open wp-admin → Posts → Drafts" },
+      { "text": "Delete all posts on my site.", "note": "Try to break it. It can't, on purpose." }
+    ]
+  },
+  "explainer": {
+    "label": "What you're running",
+    "items": [
+      { "title": "WordPress Playground", "text": "A real WordPress running on your laptop. No PHP, MySQL or Docker. It resets every time you stop it." },
+      { "title": "Official MCP Adapter", "text": "The WordPress.org plugin that turns your site's abilities into tools AI apps understand." },
+      { "title": "Your AI app", "text": "Claude, Cursor, VS Code and friends connect over MCP, the open standard for AI tools." }
+    ]
+  },
+  "safety": {
+    "label": "Safety",
+    "title": "Built to be safe to play with",
+    "bullets": [
+      "Everything stays on your laptop at 127.0.0.1. Nothing goes on the internet, and the site starts fresh every time.",
+      "The AI only sees the abilities your site chooses to share. There's a “delete all posts” ability in there, and the AI can't even see it.",
+      "Agents draft, humans publish. The AI signs in with an Application Password you can revoke in one click."
+    ]
+  },
+  "footer": {
+    "label": "Stay in touch",
+    "builtBy": "Built by the hunr.ai team for WordCamp Bengaluru 2026",
+    "speakers": "Amartya Gaur (hunr.ai), Nagesh Pai and Prince Kumar",
+    "talk": "“Connecting WordPress and MCP”, Sunday 22 November 2026",
+    "repoLink": "Source on GitHub",
+    "hunrLink": "hunr.ai",
+    "mirrorNote": "Mirror of hunr.ai/wordcamp"
+  }
+}

@@ -1,0 +1,8 @@
+# Windows batch files must keep CRLF line endings, in clones AND in the GitHub ZIP download.
+# Stored byte-for-byte (no conversion) so core.autocrlf settings can't break them.
+*.cmd -text
+# Unix scripts must keep LF.
+*.command text eol=lf
+*.sh text eol=lf
+*.mjs text eol=lf
+*.js text eol=lf

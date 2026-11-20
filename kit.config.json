@@ -1,0 +1,19 @@
+{
+  "_note": "Throwaway settings for a local demo site that only listens on 127.0.0.1 and is wiped every time it stops. The Application Password below is NOT a secret: never reuse it on a real site.",
+  "port": 9400,
+  "php": "8.3",
+  "wp": "latest",
+  "admin": {
+    "username": "admin",
+    "password": "password"
+  },
+  "appPassword": {
+    "username": "admin",
+    "name": "WordCamp MCP kit",
+    "password": "WcBlr2026LocalOnlyDemoPw"
+  },
+  "servers": {
+    "wordpress": "wordcamp-wordpress",
+    "wporg": "wporg"
+  }
+}

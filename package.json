@@ -1,0 +1,30 @@
+{
+  "name": "wordcamp-blr-mcp-kit",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hands-on kit for \"Connecting WordPress and MCP\" at WordCamp Bengaluru 2026: a local WordPress with the official MCP Adapter, connected to your AI app in one step.",
+  "homepage": "https://hunr.ai/wordcamp",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hunr-ai/wordcamp-blr-mcp-kit.git"
+  },
+  "license": "GPL-2.0-or-later",
+  "type": "module",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node scripts/start.mjs",
+    "connect": "node scripts/connect.mjs",
+    "check": "node scripts/check.mjs",
+    "hello": "node hello-mcp/test-client.js",
+    "wporg": "node hello-mcp/server.js",
+    "inspect": "npx -y @modelcontextprotocol/inspector node hello-mcp/server.js"
+  },
+  "dependencies": {
+    "@automattic/mcp-wordpress-remote": "0.5.5",
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "@wp-playground/cli": "3.1.65",
+    "zod": "4.6.7"
+  }
+}

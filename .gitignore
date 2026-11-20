@@ -1,0 +1,8 @@
+node_modules/
+.state/
+.vscode/
+# backups made by `npm run connect`
+*.wcblr-backup-*
+backups/
+.DS_Store
+Thumbs.db
