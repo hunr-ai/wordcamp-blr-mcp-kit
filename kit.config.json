@@ -1,8 +1,9 @@
 {
+  "_wpNote": "A pinned version lets the site boot offline after the first run (good for conference Wi-Fi). Use \"latest\" to always get the newest release (needs internet on every start).",
   "_note": "Throwaway settings for a local demo site that only listens on 127.0.0.1 and is wiped every time it stops. The Application Password below is NOT a secret: never reuse it on a real site.",
   "port": 9400,
   "php": "8.3",
-  "wp": "latest",
+  "wp": "7.1.5",
   "admin": {
     "username": "admin",
     "password": "password"

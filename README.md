@@ -80,7 +80,7 @@ Supported apps: Claude Desktop, Cursor, Windsurf, VS Code / GitHub Copilot (`.vs
 
 ## Safety notes
 
-- **Local only.** The site listens on 127.0.0.1, so nobody else on the Wi-Fi can reach it. It lives in memory and starts fresh every time you stop it.
+- **Local only.** The site listens on 127.0.0.1, so nobody else on the Wi-Fi can reach it. It lives in memory and starts fresh every time you stop it. After the first start it also works offline.
 - **The AI only sees what the site shares.** There's a `delete-all-posts` ability in the code, but it isn't exposed to MCP, so the AI can't even see it.
 - **Agents draft, humans publish.** No ability publishes. The AI acts as a WordPress user through an Application Password you can revoke in one click (Users → Profile).
 - **The Application Password is deliberately fixed** (in `kit.config.json`) so your app configs keep working after restarts. It's a throwaway credential for a throwaway, local-only site. **Never reuse it on a real site.**

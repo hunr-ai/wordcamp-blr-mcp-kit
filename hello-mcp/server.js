@@ -15,6 +15,11 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
+import net from "node:net";
+
+// Slow conference Wi-Fi: Node's default 250 ms per IPv6/IPv4 attempt makes fetch() fail with
+// ETIMEDOUT on high-latency links. Be more patient.
+net.setDefaultAutoSelectFamilyAttemptTimeout?.(2500);
 
 const API = "https://api.wordpress.org";
 const server = new McpServer({ name: "wporg-mcp", version: "1.0.0" });

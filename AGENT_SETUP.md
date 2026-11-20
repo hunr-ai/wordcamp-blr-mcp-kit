@@ -102,9 +102,10 @@ Keep it short. Cover:
 | `Port 9400 is busy` | Nothing to do: `npm start` picks the next free port and updates the app configs. If the user already had the demo running, reuse it instead of starting a second one. |
 | `node --version` is below 22 | Ask, then upgrade: Windows `winget upgrade OpenJS.NodeJS.LTS`, macOS nodejs.org LTS installer or `brew upgrade node`. Open a new terminal afterwards. |
 | Claude Desktop "not found" | It isn't installed, or has never been opened. Offer https://claude.ai/download, open it once, then rerun `npm run connect`. In Claude Desktop, **Settings → Developer → Edit Config** opens the exact file it reads. |
-| `npm install` hangs or fails with `ECONNRESET`, `ETIMEDOUT`, `SELF_SIGNED_CERT_IN_CHAIN` | A company proxy or VPN is blocking npm. Try another network (e.g. phone hotspot). If they have proxy settings, set them for npm (`npm config set proxy …` / `https-proxy …`). The kit doesn't use `npx` at runtime, so once installed it works offline. |
+| `npm install` hangs or fails with `ECONNRESET`, `ETIMEDOUT`, `SELF_SIGNED_CERT_IN_CHAIN` | A company proxy or VPN is blocking npm. Try another network (e.g. phone hotspot). If they have proxy settings, set them for npm (`npm config set proxy …` / `https-proxy …`). The kit doesn't use `npx` at runtime, and WordPress is cached after the first start, so after that it works offline. |
 | Windows: "running scripts is disabled on this system" | PowerShell execution policy. Use `npm.cmd …` instead of `npm …`, or `Set-ExecutionPolicy -Scope Process Bypass` for this session only. |
 | `npm run check` says the password was rejected | Something else is running on that port, or an old site is still up. Stop all `npm start` windows, run `npm start` again, then `npm run check`. |
+| `npm start` says the internet connection hiccupped | It retries by itself. The first start needs internet to download WordPress (about 40 MB); later starts work offline. On a slow network, just run `npm start` again. |
 | The AI app doesn't show the tools | Fully quit and reopen the app. Make sure `npm start` is still running. Rerun `npm run connect` and read what it reports. |
 | macOS: launcher "can't be opened" | Right-click `Start-macOS.command` → Open → Open. On newer macOS: System Settings → Privacy & Security → Open Anyway. |
 

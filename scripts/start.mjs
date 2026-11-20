@@ -27,13 +27,15 @@ try {
 }
 
 // ---- 2. Pick a port (9400, or the next free one) -----------------------------------
-const portFree = (port) =>
+const canListen = (port, host) =>
   new Promise((resolve) => {
     const srv = net.createServer();
     srv.once("error", () => resolve(false));
     srv.once("listening", () => srv.close(() => resolve(true)));
-    srv.listen(port); // all interfaces, so we also notice anything bound to 127.0.0.1
+    srv.listen(port, host);
   });
+// We listen on 127.0.0.1, so test exactly that, plus all interfaces (catches servers on 0.0.0.0 / ::).
+const portFree = async (port) => (await canListen(port, "127.0.0.1")) && (await canListen(port));
 
 const wanted = Number(option("port")) || config.port;
 let port = wanted;
@@ -58,15 +60,22 @@ for (const f of ["ready.json", "site.json"]) fs.rmSync(path.join(STATE_DIR, f), 
 
 // ---- 4. Boot Playground --------------------------------------------------------------
 const wp = (...p) => path.resolve(KIT_DIR, "wordpress", ...p);
+// An exact version ("7.1.5") becomes its wordpress.org download URL: Playground then skips the
+// online version lookup and reuses its cached copy, so the site also boots without internet.
+const wpArg = /^\d+\.\d+(\.\d+)?$/.test(config.wp) ? `https://wordpress.org/wordpress-${config.wp}.zip` : config.wp;
+// With a blueprint, Playground takes the versions from its preferredVersions (not from --wp),
+// so write the effective blueprint with the versions from kit.config.json.
+const blueprintFile = path.join(STATE_DIR, "blueprint.json");
+writeJSON(blueprintFile, { ...readJSON(wp("blueprint.json")), preferredVersions: { php: config.php, wp: wpArg } });
 // --mount-dir takes host and VFS paths as two separate arguments, so Windows "C:\..." paths are safe.
 const args = [
-  "--require", path.join(KIT_DIR, "scripts", "loopback-only.cjs"), // listen on 127.0.0.1 only, never the Wi-Fi
+  "--require", path.join(KIT_DIR, "scripts", "playground-preload.cjs"), // 127.0.0.1 only + slow-Wi-Fi fix
   cliBin,
   "server",
   `--port=${port}`,
   `--php=${config.php}`,
-  `--wp=${config.wp}`,
-  `--blueprint=${wp("blueprint.json")}`,
+  `--wp=${wpArg}`,
+  `--blueprint=${blueprintFile}`,
   "--mount-dir", wp(), "/demo",
   "--mount-dir", wp("mu-plugins"), "/wordpress/wp-content/mu-plugins",
   "--mount-dir", wp("plugins", "mcp-adapter"), "/wordpress/wp-content/plugins/mcp-adapter",
@@ -78,24 +87,37 @@ const log = fs.createWriteStream(logFile);
 console.log(c.bold(`\nStarting your demo WordPress site on ${siteUrl}`));
 console.log(c.dim("The first run downloads WordPress (about 40 MB), so give it a minute or two.\n"));
 
-const child = spawn(process.execPath, args, { cwd: KIT_DIR, stdio: ["ignore", "pipe", "pipe"], windowsHide: true });
-child.stdout.pipe(log);
-child.stderr.pipe(log);
-
+let child;
 let stopping = false;
+let ready = false;
+let attempt = 0;
 const stop = () => {
   if (stopping) return;
   stopping = true;
   fs.rmSync(path.join(STATE_DIR, "site.json"), { force: true });
-  child.kill();
+  child?.kill();
 };
 for (const sig of ["SIGINT", "SIGTERM", "SIGHUP"]) process.on(sig, () => { stop(); process.exit(0); });
 process.on("exit", stop);
 
-let ready = false;
-child.on("exit", (code) => {
+function boot() {
+  attempt++;
+  log.write(`\n----- start attempt ${attempt} -----\n`);
+  child = spawn(process.execPath, args, { cwd: KIT_DIR, stdio: ["ignore", "pipe", "pipe"], windowsHide: true });
+  child.stdout.pipe(log, { end: false });
+  child.stderr.pipe(log, { end: false });
+  child.on("exit", onExit);
+}
+
+function onExit(code) {
   if (stopping) return;
   const tail = fs.existsSync(logFile) ? fs.readFileSync(logFile, "utf8").trim().split(/\r?\n/).slice(-15).join("\n") : "";
+  // Flaky Wi-Fi during boot: try again a couple of times before giving up.
+  if (!ready && attempt < 3 && /fetch failed|ECONNRESET|ETIMEDOUT|EAI_AGAIN|ENOTFOUND|socket hang up/i.test(tail.split("----- start attempt").pop())) {
+    console.log(c.yellow(`\nThe internet connection hiccupped while starting. Trying again (${attempt + 1} of 3)...`));
+    setTimeout(boot, 3000);
+    return;
+  }
   console.error(c.red(`\n${sym.fail} WordPress stopped unexpectedly (exit code ${code}). Last lines of ${logFile}:\n`));
   console.error(c.dim(tail || "(no output)"));
   console.error(
@@ -103,7 +125,8 @@ child.on("exit", (code) => {
       "and run `npm install` again. Then try `npm start` once more.\n"
   );
   process.exit(1);
-});
+}
+boot();
 
 // ---- 5. Wait until WordPress answers and the seed step is done -----------------------
 const started = Date.now();

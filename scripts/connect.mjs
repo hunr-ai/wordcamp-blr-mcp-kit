@@ -100,7 +100,11 @@ function jsonTargets(h) {
   ];
 }
 
-const stamp = () => new Date().toISOString().replace(/[-:]/g, "").replace("T", "-").slice(0, 15);
+const stamp = () => {
+  const d = new Date();
+  const p = (n) => String(n).padStart(2, "0");
+  return `${d.getFullYear()}${p(d.getMonth() + 1)}${p(d.getDate())}-${p(d.getHours())}${p(d.getMinutes())}${p(d.getSeconds())}`;
+};
 
 /** Adds/updates our entries in one JSON config file. Never removes anything. */
 function mergeJsonFile(target, defs) {
