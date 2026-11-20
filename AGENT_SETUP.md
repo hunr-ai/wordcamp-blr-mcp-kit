@@ -1,12 +1,12 @@
 # Agent setup: WordCamp Bengaluru WordPress + MCP demo
 
-> **You are a coding agent** (Claude Code, Cursor, Codex, GitHub Copilot, Windsurf, or similar). A person at the WordCamp Bengaluru 2026 workshop "Connecting WordPress and MCP" asked you to set this up for them. **They are probably not a developer.** Follow these steps, keep your messages short, friendly and jargon-free, and do the work for them.
+> **You are a coding agent** (Claude Code, Cursor, Codex, GitHub Copilot, Windsurf, or similar). A person attending "Connecting WordPress and MCP", a workshop at WordCamp Bengaluru 2026, asked you to set this up for them. **They are probably not a developer.** Follow these steps, keep your messages short, friendly and jargon-free, and do the work for them.
 >
 > Main page: https://hunr.ai/wordcamp (mirror: https://hunr-ai.github.io/wordcamp-blr-mcp-kit/) · Repo: https://github.com/hunr-ai/wordcamp-blr-mcp-kit
 
 ## What you are setting up
 
-A throwaway WordPress site that runs **only on their laptop** (WordPress Playground, at `http://127.0.0.1:9400`), with the official **MCP Adapter** plugin and a few demo "abilities", plus the MCP client config so their AI apps can talk to it. Nothing is deployed anywhere. The site lives in memory and resets every time it stops.
+A throwaway WordPress site that runs **only on their laptop** (WordPress Playground, at `http://127.0.0.1:9400`), with the **MCP Adapter** plugin from WordPress.org and a few demo "abilities", plus the MCP client config so their AI apps can talk to it. Nothing is deployed anywhere. The site lives in memory and resets every time it stops.
 
 ## Ground rules
 

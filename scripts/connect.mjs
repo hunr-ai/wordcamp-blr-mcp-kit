@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // npm run connect  ->  adds two MCP servers to the AI apps found on this computer:
-//   wordcamp-wordpress : your local demo WordPress site (official MCP Adapter, via the
+//   wordcamp-wordpress : your local demo WordPress site (MCP Adapter plugin, via the
 //                        @automattic/mcp-wordpress-remote STDIO proxy)
 //   wporg              : the tiny hello-mcp server that searches WordPress.org
 //
@@ -145,7 +145,8 @@ function mergeJsonFile(target, defs) {
 }
 
 // ---- CLI-based clients (Claude Code, Codex) ----------------------------------------
-const quoteWin = (a) => (/[\s"&|<>^()]/.test(a) ? `"${a.replace(/"/g, '""')}"` : a);
+// cmd.exe splits on spaces and also on = ; , so quote anything with those (base64, --env K=V).
+const quoteWin = (a) => (/[\s"&|<>^()=;,]/.test(a) ? `"${a.replace(/"/g, '""')}"` : a);
 
 function run(cmd, args, env) {
   // On Windows, npm-installed CLIs are .cmd shims, which need a shell (and manual quoting).

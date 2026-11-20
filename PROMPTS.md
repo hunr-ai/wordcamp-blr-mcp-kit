@@ -5,7 +5,7 @@ Copy these into your AI app (Claude Desktop, Claude Code, Cursor, VS Code, Codex
 
 The kit adds two connections to your AI app:
 
-- **wordcamp-wordpress**: your local demo WordPress site (through the official MCP Adapter plugin)
+- **wordcamp-wordpress**: your local demo WordPress site (through the MCP Adapter plugin from WordPress.org)
 - **wporg**: a tiny example server that searches the public WordPress.org plugin directory
 
 ## 1. Say hello
@@ -13,7 +13,7 @@ The kit adds two connections to your AI app:
 - `Are you connected to my WordPress site? What is it called and what version is it running?`
 - `What can this site let you do? List the abilities.`
 - `What tools do you have from the wporg server?`
-- `Compare the official WordPress plugins mcp-adapter, ai and performance-lab: version, installs, last update.`
+- `Compare the WordPress plugins mcp-adapter, ai and performance-lab: version, installs, last update.`
 
 ## 2. Make it useful
 

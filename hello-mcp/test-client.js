@@ -18,8 +18,8 @@ const { tools } = await client.listTools();
 console.log("\n🧰 tools/list");
 for (const t of tools) console.log(`   - ${t.name}: ${t.description}`);
 
-// Official WordPress-team plugins only (no third-party promotion on stage).
-console.log("\n📞 tools/call plugin_details × 3 (official WordPress.org plugins)");
+// WordPress.org plugins from the WordPress project only (no third-party promotion on stage).
+console.log("\n📞 tools/call plugin_details x 3 (WordPress project plugins)");
 const rows = [];
 for (const slug of ["mcp-adapter", "ai", "performance-lab"]) {
   const r = await client.callTool({ name: "plugin_details", arguments: { slug } });

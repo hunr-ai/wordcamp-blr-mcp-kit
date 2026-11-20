@@ -70,4 +70,4 @@ const useColor = process.stdout.isTTY && !process.env.NO_COLOR;
 const fancy = !IS_WIN || !!process.env.WT_SESSION || process.env.TERM_PROGRAM === "vscode";
 const paint = (code) => (s) => (useColor ? `\x1b[${code}m${s}\x1b[0m` : String(s));
 export const c = { green: paint("32"), red: paint("31"), yellow: paint("33"), bold: paint("1"), dim: paint("2") };
-export const sym = fancy ? { ok: "✔", fail: "✖", arrow: "→", dot: "·" } : { ok: "[ok]", fail: "[x]", arrow: "->", dot: "-" };
+export const sym = fancy ? { ok: "✔", fail: "✖", arrow: "→", dot: "·", rule: "─" } : { ok: "[ok]", fail: "[x]", arrow: "->", dot: "-", rule: "-" };

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // npm start  ->  boots a throwaway WordPress on your laptop (WordPress Playground: no PHP,
-// MySQL or Docker needed) with the official MCP Adapter plugin, demo abilities and content.
+// MySQL or Docker needed) with the MCP Adapter plugin from WordPress.org, demo abilities and content.
 // The site lives in memory: stop it (Ctrl+C) and start again for a fresh site.
 import fs from "node:fs";
 import net from "node:net";
@@ -166,7 +166,7 @@ if (connected && connected.port !== port && connected.targets?.length) {
 }
 
 // ---- 7. Friendly banner --------------------------------------------------------------
-const line = c.dim("─".repeat(64));
+const line = c.dim(sym.rule.repeat(64));
 console.log(`
 ${line}
   ${c.green(sym.ok)} ${c.bold("Your demo WordPress site is running")} ${c.dim(`(WordPress ${seed.wp_version})`)}

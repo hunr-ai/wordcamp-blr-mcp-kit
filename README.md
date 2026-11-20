@@ -1,7 +1,7 @@
 # Let AI work with your WordPress site, *safely*
 
-The hands-on kit for **"Connecting WordPress and MCP"** at WordCamp Bengaluru 2026 (Sunday 22 November).
-It sets up a real WordPress site on your laptop with the official **MCP Adapter** plugin and connects it to your AI app, on Windows or macOS.
+The hands-on kit for **"Connecting WordPress and MCP"**, a workshop at WordCamp Bengaluru 2026 (Sunday 22 November).
+It sets up a real WordPress site on your laptop with the **MCP Adapter** plugin from WordPress.org and connects it to your AI app, on Windows or macOS.
 
 **Main page:** https://hunr.ai/wordcamp · Mirror: https://hunr-ai.github.io/wordcamp-blr-mcp-kit/
 
@@ -66,14 +66,14 @@ More in [PROMPTS.md](PROMPTS.md).
 | `scripts/start.mjs` (`npm start`) | Boots WordPress Playground on port 9400 (or the next free port), on 127.0.0.1 only |
 | `scripts/connect.mjs` (`npm run connect`) | Adds two MCP servers to the AI apps it finds. `--print` shows the config without changing anything |
 | `scripts/check.mjs` (`npm run check`) | Talks raw MCP to your site, exactly like an AI app would |
-| `wordpress/` | Blueprint, demo content, the official [MCP Adapter](https://wordpress.org/plugins/mcp-adapter/) plugin (0.7.2) and the demo abilities in `mu-plugins/wcblr-abilities.php` |
+| `wordpress/` | Blueprint, demo content, the [MCP Adapter](https://wordpress.org/plugins/mcp-adapter/) plugin (0.7.2) and the demo abilities in `mu-plugins/wcblr-abilities.php` |
 | `hello-mcp/` (`npm run hello`) | A ~100-line MCP server for the WordPress.org plugin directory, plus a tiny client |
 | `kit.config.json` | Port, logins and the throwaway Application Password |
 | `docs/` | The landing page (`content.json` holds its copy) |
 
 The two MCP servers it adds:
 
-- **`wordcamp-wordpress`**: your demo site, through the MCP Adapter endpoint `http://127.0.0.1:9400/wp-json/mcp/mcp-adapter-default-server`. Desktop apps connect with the official `@automattic/mcp-wordpress-remote` proxy (installed locally, so it works offline); Claude Code connects over HTTP directly.
+- **`wordcamp-wordpress`**: your demo site, through the MCP Adapter endpoint `http://127.0.0.1:9400/wp-json/mcp/mcp-adapter-default-server`. Desktop apps connect with the `@automattic/mcp-wordpress-remote` proxy (installed locally, so it works offline); Claude Code connects over HTTP directly.
 - **`wporg`**: the `hello-mcp` example server.
 
 Supported apps: Claude Desktop, Cursor, Windsurf, VS Code / GitHub Copilot (`.vscode/mcp.json` in this folder), Claude Code and Codex. For anything else, `npm run connect -- --print` prints JSON you can paste.
@@ -93,4 +93,4 @@ GPL-2.0-or-later. The bundled MCP Adapter plugin is GPL-2.0-or-later, © the Wor
 
 ---
 
-Made for WordCamp Bengaluru 2026 by Amartya Gaur ([hunr.ai](https://hunr.ai)), Nagesh Pai and Prince Kumar.
+Workshop by Amartya Gaur ([hunr.ai](https://hunr.ai)), Nagesh Pai and Prince Kumar, at WordCamp Bengaluru 2026.

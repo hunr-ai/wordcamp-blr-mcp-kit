@@ -2,7 +2,7 @@
   "name": "wordcamp-blr-mcp-kit",
   "version": "1.0.0",
   "private": true,
-  "description": "Hands-on kit for \"Connecting WordPress and MCP\" at WordCamp Bengaluru 2026: a local WordPress with the official MCP Adapter, connected to your AI app in one step.",
+  "description": "Hands-on kit for \"Connecting WordPress and MCP\", a workshop at WordCamp Bengaluru 2026: a local WordPress with the MCP Adapter plugin, connected to your AI app in one step.",
   "homepage": "https://hunr.ai/wordcamp",
   "repository": {
     "type": "git",

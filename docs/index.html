@@ -3,22 +3,21 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Connecting WordPress and MCP · WordCamp Bengaluru 2026</title>
+<title>Connecting WordPress and MCP · Workshop kit</title>
 <meta name="description" content="Let AI work with your WordPress site, safely. Paste one prompt into your coding agent and it sets up a local WordPress your AI app can talk to.">
 <link rel="canonical" href="https://hunr.ai/wordcamp">
 <meta name="theme-color" content="#F7F7F5">
 <meta name="color-scheme" content="light">
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="hunr.ai">
-<meta property="og:title" content="Connecting WordPress and MCP · WordCamp Bengaluru 2026">
+<meta property="og:title" content="Connecting WordPress and MCP · Workshop kit">
 <meta property="og:description" content="Let AI work with your WordPress site, safely. Paste one prompt into your coding agent and it sets up a local WordPress your AI app can talk to.">
 <meta property="og:url" content="https://hunr.ai/wordcamp">
 <meta property="og:image" content="https://hunr-ai.github.io/wordcamp-blr-mcp-kit/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Let AI work with your WordPress site, safely. WordCamp Bengaluru 2026.">
+<meta property="og:image:alt" content="Let AI work with your WordPress site, safely. A workshop kit for Connecting WordPress and MCP.">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Connecting WordPress and MCP · WordCamp Bengaluru 2026">
+<meta name="twitter:title" content="Connecting WordPress and MCP · Workshop kit">
 <meta name="twitter:description" content="Let AI work with your WordPress site, safely. Paste one prompt into your coding agent and it sets up a local WordPress your AI app can talk to.">
 <meta name="twitter:image" content="https://hunr-ai.github.io/wordcamp-blr-mcp-kit/og.png">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -72,11 +71,8 @@
   .muted { color: var(--muted); }
 
   header.top { padding: 22px 0 0; }
-  .brand { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
-  .brand a { display: inline-flex; align-items: center; gap: 8px; color: var(--ink); text-decoration: none; font-weight: 700; letter-spacing: -.01em; }
-  .brand a:hover { color: var(--green); }
-  .brand .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); }
-  .brand .event { font: 500 11px/1.3 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); text-align: right; }
+  .topline { display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: -.01em; }
+  .topline .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); flex: none; }
 
   section { padding: 44px 0; border-top: 1px solid var(--rule); }
   .hero { border-top: 0; padding: 48px 0 40px; }
@@ -201,18 +197,15 @@
 <script>document.body.className = "js";</script>
 
 <header class="top">
-  <div class="wrap brand">
-    <a href="https://hunr.ai" aria-label="hunr.ai home"><span class="dot" aria-hidden="true"></span>hunr.ai</a>
-    <span class="event">WordCamp Bengaluru<br>22 Nov 2026</span>
-  </div>
+  <div class="wrap topline"><span class="dot" aria-hidden="true"></span>Connecting WordPress and MCP</div>
 </header>
 
 <main>
   <div class="wrap">
     <section class="hero">
-      <p class="label">WordCamp Bengaluru 2026 · Hands-on kit</p>
+      <p class="label">A workshop at WordCamp Bengaluru 2026</p>
       <h1>Let AI work with your WordPress site, <em>safely</em>.</h1>
-      <p class="lede">One prompt sets up a real WordPress site on your laptop, with the official MCP Adapter, and connects it to your AI app.</p>
+      <p class="lede">One prompt sets up a real WordPress site on your laptop, with the MCP Adapter plugin from WordPress.org, and connects it to your AI app.</p>
     </section>
 
     <div class="card" id="agent">
@@ -280,7 +273,7 @@
       <p class="label">What you're running</p>
       <div class="cols">
         <div><span class="num">01</span><h3>WordPress Playground</h3><p>A real WordPress running on your laptop. No PHP, MySQL or Docker. It resets every time you stop it.</p></div>
-        <div><span class="num">02</span><h3>Official MCP Adapter</h3><p>The WordPress.org plugin that turns your site's abilities into tools AI apps understand.</p></div>
+        <div><span class="num">02</span><h3>MCP Adapter plugin</h3><p>The free plugin from WordPress.org that turns your site's abilities into tools AI apps understand.</p></div>
         <div><span class="num">03</span><h3>Your AI app</h3><p>Claude, Cursor, VS Code and friends connect over MCP, the open standard for AI tools.</p></div>
       </div>
     </section>
@@ -302,12 +295,11 @@
 <footer>
   <div class="wrap">
     <p class="label">Stay in touch</p>
-    <h2>Built by the hunr.ai team for WordCamp Bengaluru 2026</h2>
-    <p>Amartya Gaur (hunr.ai), Nagesh Pai and Prince Kumar</p>
-    <p>“Connecting WordPress and MCP”, Sunday 22 November 2026</p>
+    <h2>Workshop by Amartya Gaur (<a href="https://hunr.ai">hunr.ai</a>), Nagesh Pai and Prince Kumar</h2>
+    <p>“Connecting WordPress and MCP”, a workshop at WordCamp Bengaluru 2026, Sunday 22 November.</p>
     <div class="links">
-      <a class="btn light" href="https://hunr.ai">hunr.ai</a>
-      <a class="btn ghost" href="https://github.com/hunr-ai/wordcamp-blr-mcp-kit">Source on GitHub</a>
+      <a class="btn light" href="https://github.com/hunr-ai/wordcamp-blr-mcp-kit">Source on GitHub</a>
+      <a class="btn ghost" href="https://hunr.ai">Say hi at hunr.ai</a>
     </div>
     <p class="fine"><a href="https://hunr.ai/wordcamp">hunr.ai/wordcamp</a> · <a href="https://hunr-ai.github.io/wordcamp-blr-mcp-kit/">Mirror of hunr.ai/wordcamp</a> · GPL-2.0-or-later</p>
   </div>
